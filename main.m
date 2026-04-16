@@ -10,3 +10,5 @@ clc
 
 %% Initialize blade elements
 
+run inputs
+

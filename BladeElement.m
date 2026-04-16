@@ -1,16 +1,20 @@
 classdef BladeElement
     
     properties
-        Property1
+        R
+        IncrementLength
+        r
     end
     
     methods
-        function obj = BladeElement(inputArg1,inputArg2)
-            obj.Property1 = inputArg1 + inputArg2;
-        end
-        
-        function outputArg = method1(obj,inputArg)
-            outputArg = obj.Property1 + inputArg;
+        function obj = BladeElement(R, IncrementLength)
+            obj.R = R;
+            obj.IncrementLength = IncrementLength;
+
+            n = floor(obj.R / obj.IncrementLength);
+            for i = 1:1:n
+                obj.r(i) = BladeElement((i-1)*obj.IncrementLength);
+            end 
         end
     end
 end
