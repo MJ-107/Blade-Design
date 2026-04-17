@@ -10,5 +10,10 @@ clc
 
 %% Initialize blade elements
 
-run inputs
+run inputs.m
 
+dr = rotor.R/rotor.numStns;
+
+for i = 1:1:rotor.numStns
+BladeElements(i) = BladeElement(dr*i, rotor.elementLength, rotor.numStns);
+end
