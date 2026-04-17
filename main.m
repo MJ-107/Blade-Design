@@ -20,3 +20,5 @@ BladeElements(i) = BladeElement(dr*i, rotor.elementLength, rotor.numStns);
 BladeElements(i) = calculateTwist(BladeElements(i), rotor.R, wf.WindSpeed, rotor.rotationalSpeed, a);
 end
 
+% General notes
+% Redo the a' data
