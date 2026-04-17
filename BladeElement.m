@@ -6,6 +6,7 @@ classdef BladeElement
         elementLength
         numStns
         cntlPnt
+        NonDimensionalizedr2
         TSR 
         resVelocity
         
@@ -20,12 +21,13 @@ classdef BladeElement
             obj.cntlPnt = (obj.r1 + obj.r2) / 2;
         end
 
-        function obj = calculateTwist(obj, windSpeed, rotationalSpeed, axialInductionFactor)
+        function obj = calculateTwist(obj, R, windSpeed, rotationalSpeed, axialInductionFactor)
             obj.TSR = (obj.r2 * rotationalSpeed) / windSpeed; % R2 being used because planform is being generated
-            obj.resVelocity = sqrt(windSpeed*(1-axialInductionFactor));
-       
-            
+            obj.NonDimensionalizedr2 = nonDimentionalize(obj.r2, R);
+            %obj.resVelocity = sqrt(windSpeed*(1-axialInductionFactor));
         end
+
+
     end
 end
 
