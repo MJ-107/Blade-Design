@@ -23,10 +23,11 @@ classdef BladeElement
         end
 
         function obj = calculateTwist(obj, R, windSpeed, rotationalSpeed, axInductionFactor)
-            obj.nonDimensionalizedPoint = nonDimentionalize(obj.r2, R); % R2 being used because planform is being generated
+            obj.nonDimensionalizedPoint = nonDimensionalize(obj.r2, R); % R2 being used because planform is being generated
             obj.angInductionFactor = calculateAngIndFactor(obj.nonDimensionalizedPoint);
             obj.TSR = (obj.r2 * rotationalSpeed) / windSpeed; 
-            obj.resVelocity = sqrt(windSpeed*(1-axialInductionFactor));
+            obj.resVelocity = sqrt((windSpeed * (1 - axInductionFactor)) ^ 2 + ...
+                (obj.r2 * rotationalSpeed * (1 + obj.angInductionFactor)) ^ 2);
         end
 
 
