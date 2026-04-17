@@ -26,7 +26,7 @@ classdef BladeElement
             obj.nonDimensionalizedPoint = nonDimentionalize(obj.r2, R); % R2 being used because planform is being generated
             obj.angInductionFactor = calculateAngIndFactor(obj.nonDimensionalizedPoint);
             obj.TSR = (obj.r2 * rotationalSpeed) / windSpeed; 
-            %obj.resVelocity = sqrt(windSpeed*(1-axialInductionFactor));
+            obj.resVelocity = sqrt(windSpeed*(1-axialInductionFactor));
         end
 
 
