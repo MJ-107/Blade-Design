@@ -16,7 +16,7 @@ wf.WindSpeed = 10; % Input free stream velocity in m/s
 %% Additional set up calculations
 % *** DO NOT ALTER FORMULAS ***
 rotor.Area = pi * rotor.R ^ 2; % Swept area
-rotor.RotationalSpeed = (rotor.TSR * wf.WindSpeed) / rotor.R ; % In rad/s
+rotor.rotationalSpeed = (rotor.TSR * wf.WindSpeed) / rotor.R ; % In rad/s
 rotor.numStns = rotor.R/rotor.elementLength;
 wf.Density = 1.225; 
 wf.KinematicVisc = 1.789e-5; % Std air
