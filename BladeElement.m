@@ -25,31 +25,31 @@ classdef BladeElement
             obj.ctrlPnt = (obj.r1 + obj.r2) / 2;
         end
 
-        function POI = checkCenter(obj, isCtrl)
+        function [POI,idx] = checkCenter(obj, isCtrl)
             % Set POI to endpoints or midpoints of every element
                 if isCtrl == 0
                     POI = obj.r2; % Set to endpoints (TE)
-                    
+                    idx = 2;
                 else
                     POI = obj.ctrlPnt; % Set to midpoints (ctrl points)
-                    
+                    idx = 1;
                 end
         end
 
         function obj = calculateaPrime(obj, isCtrl, R)
-            obj.POI = checkCenter(obj, isCtrl);
-            obj.nonDimensionalizedPoint = nonDimensionalize(obj.POI, R);
-            obj.aPrime = calculateAngIndFactor(obj.nonDimensionalizedPoint);
+            [obj.POI,idx] = checkCenter(obj, isCtrl);
+            obj.nonDimensionalizedPoint(idx) = nonDimensionalize(obj.POI, R);
+            obj.aPrime(idx) = calculateAngIndFactor(obj.nonDimensionalizedPoint(idx));
         end
 
         function obj = calculateTSR(obj, isCtrl, rotationalSpeed, windSpeed)
-            obj.POI = checkCenter(obj, isCtrl);
-            obj.TSR = calculateTipSpeedRatio(obj.POI, rotationalSpeed, windSpeed);
+            [obj.POI,idx] = checkCenter(obj, isCtrl);
+            obj.TSR(idx) = calculateTipSpeedRatio(obj.POI, rotationalSpeed, windSpeed);
         end
 
         function obj = calculateVR(obj, isCtrl, rotationalSpeed, windSpeed, a)
-            obj.POI = checkCenter(obj, isCtrl);
-            obj.VR = calculateResVelocity(obj.POI, windSpeed, rotationalSpeed, a, obj.aPrime);
+            [obj.POI, idx] = checkCenter(obj, isCtrl);
+            obj.VR(idx) = calculateResVelocity(obj.POI, windSpeed, rotationalSpeed, a, obj.aPrime(idx));
         end
 
 
