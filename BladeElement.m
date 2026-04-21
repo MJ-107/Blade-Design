@@ -16,7 +16,8 @@ classdef BladeElement
     end
     
     methods
-        function obj = BladeElement(r2, elementLength, numStns, isCtrl)
+
+        function obj = BladeElement(r2, elementLength, numStns)
             obj.r2 = r2;
             obj.r1 = r2-elementLength;
             obj.elementLength = elementLength;
