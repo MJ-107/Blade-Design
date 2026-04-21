@@ -1,6 +1,6 @@
-function nonDimensionalizedValue = nonDimensionalize(point, R)
+function nonDimensionalizedValue = nonDimensionalize(POI, R)
 
-nonDimensionalizedValue = point / R;
+nonDimensionalizedValue = POI / R;
 
 end
 
