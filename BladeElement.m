@@ -10,6 +10,7 @@ classdef BladeElement
         angInductionFactor
         TSR 
         resVelocity
+        inFlowAngle
         
     end
     
@@ -22,12 +23,13 @@ classdef BladeElement
             obj.cntlPnt = (obj.r1 + obj.r2) / 2;
         end
 
-        function obj = calculateTwist(obj, R, windSpeed, rotationalSpeed, axInductionFactor)
+        function obj = calculatePhi(obj, R, windSpeed, rotationalSpeed, axInductionFactor)
             obj.nonDimensionalizedPoint = nonDimensionalize(obj.r2, R); % R2 being used because planform is being generated
             obj.angInductionFactor = calculateAngIndFactor(obj.nonDimensionalizedPoint);
             obj.TSR = (obj.r2 * rotationalSpeed) / windSpeed; 
             obj.resVelocity = sqrt((windSpeed * (1 - axInductionFactor)) ^ 2 + ...
                 (obj.r2 * rotationalSpeed * (1 + obj.angInductionFactor)) ^ 2);
+            obj.inFlowAngle  = 2/3 * atan (1/obj.TSR); % angle in radians
         end
 
 
