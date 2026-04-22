@@ -12,6 +12,7 @@ classdef BladeElement
         TSR 
         VR
         Phi
+        Theta
         
     end
     
@@ -52,10 +53,16 @@ classdef BladeElement
             obj.VR(idx) = calculateResVelocity(obj.POI, windSpeed, rotationalSpeed, a, obj.aPrime(idx));
         end
 
+        function obj = calculatePhi(obj, isCtrl)
+            [obj.POI, idx] = checkCenter(obj, isCtrl);
+            obj.Phi(idx) = calculateInflowAngle(obj.POI, obj.TSR(idx));
+        end
 
-        %     obj.resVelocity = calculateResVelocity(obj.r2);
-        %     obj.inFlowAngle  = calculatePhi
-        % end
+
+        function obj = calculateTheta(obj, isCtrl, alpha)
+            [obj.POI, idx] = checkCenter(obj, isCtrl);
+            obj.Theta(idx) = calculateTwist(obj.Phi(idx), alpha);
+        end
 
 
     end
